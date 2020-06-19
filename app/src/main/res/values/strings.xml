@@ -1,0 +1,6 @@
+<resources>
+    <string name="app_name">Mqtt Geolocation Sample</string>
+    <string name="start">Start</string>
+    <string name="stop">Stop</string>
+    <string name="gps_status">GPS Status</string>
+</resources>
