@@ -13,6 +13,9 @@ import android.os.Bundle;
 import android.os.IBinder;
 import android.util.Log;
 
+import com.google.gson.Gson;
+import com.riot.mqttGeolocationExample.models.Coordinates;
+
 public class LocationService extends Service {
 
     private final LocationServiceBinder binder = new LocationServiceBinder();
@@ -48,12 +51,15 @@ public class LocationService extends Service {
         @Override
         public void onLocationChanged(Location location) {
             lastLocation = location;
-            double altitude = location.getAltitude();
-            double latitude = location.getLatitude();
-            Log.i(TAG, "LocationChanged: " + location);
-            Log.i(TAG, "Altitude: " + altitude);
-            Log.i(TAG, "Longitude: " + latitude);
-            mqtt.pub("{'altitude':" + altitude + ",'latitude':" + latitude + "}");
+            Coordinates coordinates = new Coordinates(
+                    location.getLatitude(),
+                    location.getLongitude(),
+                    location.getAltitude());
+
+            Gson gson = new Gson();
+            String json = gson.toJson(coordinates);
+            Log.i("JSON",json);
+            mqtt.pub(json);
         }
 
         @Override
