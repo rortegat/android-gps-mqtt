@@ -1,10 +1,10 @@
 # Android GPS location publisher
 
-This application let you retrieve altitude, logitude and latitud from you Android device and then send it to MQTT message broker.
+This application let you retrieve altitude, logitude and latitud from you Android device and send it in JSON format to MQTT message broker.
 
 ## GPS Location Service
 
-Run in the background
+Run in foreground service.
 
 ## MQTT Client
 
